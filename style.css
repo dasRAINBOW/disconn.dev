@@ -1,0 +1,96 @@
+@media (prefers-color-scheme: light) {
+    :root {
+        --text: #0d0b0e;
+        --background: #f6f2f8;
+        --primary: #53286c;
+        --secondary: #b56ede;
+        --accent: #941adb;
+    }
+}
+@media (prefers-color-scheme: dark) {
+    :root {
+        --text: #f2f0f3;
+        --background: #0b070d;
+        --primary: #be93d7;
+        --secondary: #672190;
+        --accent: #9d22e5;
+    }
+}
+
+@keyframes colorGlow {
+    0% {
+        transform-origin: center center;
+        transform: translateX(50vw) translateX(-50%) scale(90%);
+        text-shadow:
+            5px 5px 10px var(--accent),
+            5px -5px 10px var(--accent),
+            -5px 5px 10px var(--accent),
+            -5px -5px 10px var(--accent);
+    }
+    100% {
+        transform-origin: center center;
+        transform: translateX(50vw) translateX(-50%) scale(110%);
+        text-shadow:
+            5px 5px 5px var(--primary),
+            5px -5px 5px var(--primary),
+            -5px 5px 5px var(--primary),
+            -5px -5px 5px var(--primary);
+    }
+}
+
+* {
+    background-color: var(--background);
+    color: var(--text);
+    font-family: Monospace;
+}
+
+.hidden {
+    width: 0px;
+    height: 0px;
+    visibility: hidden;
+    content-visibility: hidden;
+    display: none;
+    font-display: none;
+}
+
+.webTitle {
+    animation: colorGlow 1s infinite ease alternate;
+    text-shadow:
+        5px 5px 10px var(--accent),
+        5px -5px 10px var(--accent),
+        -5px 5px 10px var(--accent),
+        -5px -5px 10px var(--accent);
+    max-width: 35vw;
+    margin: 10px;
+    padding: 10px;
+    font-size: 300%;
+    text-align: center;
+}
+
+.titleDance {
+    text-align: center;
+    transform: translateX(50vw) translateX(-50%);
+    border-radius: 5px;
+    background-color: var(--secondary);
+    border: 2px solid #fff;
+    color: var(--text);
+    transition:
+        box-shadow 300ms ease-in-out,
+        transform 100ms ease;
+    box-shadow:
+        0px 0px 5px var(--primary),
+        0px 0px 10px var(--primary),
+        0px 0px 20px var(--primary);
+    font-size: 150%;
+}
+
+.titleDance:active {
+    transform: translateX(50vw) translateX(-50%) translateY(3px);
+}
+
+.titleDance:hover {
+    box-shadow:
+        0px 0px 5px var(--accent),
+        0px 0px 10px var(--accent),
+        0px 0px 20px var(--accent);
+}
