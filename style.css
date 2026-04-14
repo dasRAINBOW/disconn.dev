@@ -1,47 +1,202 @@
 @media (prefers-color-scheme: light) {
     :root {
-        --text: #0d0b0e;
-        --background: #f6f2f8;
-        --primary: #53286c;
-        --secondary: #b56ede;
-        --accent: #941adb;
+        --text-50: #f3f1f4;
+        --text-100: #e7e2e9;
+        --text-200: #cec6d2;
+        --text-300: #b6a9bc;
+        --text-400: #9d8da5;
+        --text-500: #85708f;
+        --text-600: #6a5a72;
+        --text-700: #504356;
+        --text-800: #352d39;
+        --text-900: #1b161d;
+        --text-950: #0d0b0e;
+
+        --background-50: #f4eef6;
+        --background-100: #e8deed;
+        --background-200: #d1bddb;
+        --background-300: #ba9cc9;
+        --background-400: #a37ab8;
+        --background-500: #8c59a6;
+        --background-600: #704785;
+        --background-700: #543663;
+        --background-800: #382442;
+        --background-900: #1c1221;
+        --background-950: #0e0911;
+
+        --primary-50: #f4ecf8;
+        --primary-100: #e9daf1;
+        --primary-200: #d2b5e3;
+        --primary-300: #bc8fd6;
+        --primary-400: #a66ac8;
+        --primary-500: #8f45ba;
+        --primary-600: #733795;
+        --primary-700: #562970;
+        --primary-800: #391c4a;
+        --primary-900: #1d0e25;
+        --primary-950: #0e0713;
+
+        --secondary-50: #f4eafa;
+        --secondary-100: #ead5f6;
+        --secondary-200: #d5acec;
+        --secondary-300: #bf82e3;
+        --secondary-400: #aa59d9;
+        --secondary-500: #952fd0;
+        --secondary-600: #7726a6;
+        --secondary-700: #591c7d;
+        --secondary-800: #3c1353;
+        --secondary-900: #1e092a;
+        --secondary-950: #0f0515;
+
+        --accent-50: #f5e8fc;
+        --accent-100: #ebd1fa;
+        --accent-200: #d7a4f4;
+        --accent-300: #c376ef;
+        --accent-400: #ae48ea;
+        --accent-500: #9a1be4;
+        --accent-600: #7b15b7;
+        --accent-700: #5d1089;
+        --accent-800: #3e0b5b;
+        --accent-900: #1f052e;
+        --accent-950: #0f0317;
     }
 }
 @media (prefers-color-scheme: dark) {
     :root {
-        --text: #f2f0f3;
-        --background: #0b070d;
-        --primary: #be93d7;
-        --secondary: #672190;
-        --accent: #9d22e5;
+        --text-50: #0d0b0e;
+        --text-100: #1a171c;
+        --text-200: #352d39;
+        --text-300: #4f4455;
+        --text-400: #6a5b71;
+        --text-500: #84718e;
+        --text-600: #9d8ea4;
+        --text-700: #b5aabb;
+        --text-800: #cec6d2;
+        --text-900: #e6e3e8;
+        --text-950: #f3f1f4;
+
+        --background-50: #0e0911;
+        --background-100: #1c1221;
+        --background-200: #382442;
+        --background-300: #543663;
+        --background-400: #704785;
+        --background-500: #8c59a6;
+        --background-600: #a37ab8;
+        --background-700: #ba9cc9;
+        --background-800: #d1bddb;
+        --background-900: #e8deed;
+        --background-950: #f4eef6;
+
+        --primary-50: #0e0713;
+        --primary-100: #1d0e25;
+        --primary-200: #391c4a;
+        --primary-300: #562970;
+        --primary-400: #733795;
+        --primary-500: #8f45ba;
+        --primary-600: #a66ac8;
+        --primary-700: #bc8fd6;
+        --primary-800: #d2b5e3;
+        --primary-900: #e9daf1;
+        --primary-950: #f4ecf8;
+
+        --secondary-50: #0f0515;
+        --secondary-100: #1e092a;
+        --secondary-200: #3c1353;
+        --secondary-300: #591c7d;
+        --secondary-400: #7726a6;
+        --secondary-500: #952fd0;
+        --secondary-600: #aa59d9;
+        --secondary-700: #bf82e3;
+        --secondary-800: #d5acec;
+        --secondary-900: #ead5f6;
+        --secondary-950: #f4eafa;
+
+        --accent-50: #0f0317;
+        --accent-100: #1f052e;
+        --accent-200: #3e0b5b;
+        --accent-300: #5d1089;
+        --accent-400: #7b15b7;
+        --accent-500: #9a1be4;
+        --accent-600: #ae48ea;
+        --accent-700: #c376ef;
+        --accent-800: #d7a4f4;
+        --accent-900: #ebd1fa;
+        --accent-950: #f5e8fc;
     }
 }
 
-@keyframes colorGlow {
+@keyframes titleAnimate {
     0% {
         transform-origin: center center;
         transform: translateX(50vw) translateX(-50%) scale(90%);
         text-shadow:
-            5px 5px 10px var(--accent),
-            5px -5px 10px var(--accent),
-            -5px 5px 10px var(--accent),
-            -5px -5px 10px var(--accent);
+            5px 5px 10px var(--accent-500),
+            5px -5px 10px var(--accent-500),
+            -5px 5px 10px var(--accent-500),
+            -5px -5px 10px var(--accent-500);
     }
     100% {
         transform-origin: center center;
         transform: translateX(50vw) translateX(-50%) scale(110%);
         text-shadow:
-            5px 5px 5px var(--primary),
-            5px -5px 5px var(--primary),
-            -5px 5px 5px var(--primary),
-            -5px -5px 5px var(--primary);
+            5px 5px 5px var(--primary-700),
+            5px -5px 5px var(--primary-700),
+            -5px 5px 5px var(--primary-700),
+            -5px -5px 5px var(--primary-700);
+    }
+}
+
+@keyframes slotsTitleAnimate {
+    0% {
+        transform: translateX(-50%) translateY(-5%);
+        text-shadow:
+            5px 5px 10px var(--accent-500),
+            5px -5px 10px var(--accent-500),
+            -5px 5px 10px var(--accent-500),
+            -5px -5px 10px var(--accent-500);
+    }
+    100% {
+        transform: translateX(-50%) translateY(5%);
+        text-shadow:
+            5px 5px 10px #f0f,
+            5px -5px 10px #f0f,
+            -5px 5px 10px #f0f,
+            -5px -5px 10px #f0f;
+    }
+}
+
+@keyframes spinAnim {
+    0% {
+        top: 50%;
+        opacity: 1;
+    }
+    50% {
+        top: 150%;
+        opacity: 1;
+    }
+    51% {
+        opacity: 0;
+    }
+    75% {
+        top: -50%;
+        opacity: 0;
+    }
+    76% {
+        opacity: 1;
+    }
+    100% {
+        top: 50%;
+        opacity: 1;
     }
 }
 
 * {
-    background-color: var(--background);
-    color: var(--text);
+    color: var(--text-950);
     font-family: Monospace;
+}
+
+body {
+    background-color: var(--background-50);
 }
 
 .hidden {
@@ -54,12 +209,12 @@
 }
 
 .webTitle {
-    animation: colorGlow 1s infinite ease alternate;
+    animation: titleAnimate 1s infinite ease alternate;
     text-shadow:
-        5px 5px 10px var(--accent),
-        5px -5px 10px var(--accent),
-        -5px 5px 10px var(--accent),
-        -5px -5px 10px var(--accent);
+        5px 5px 10px var(--accent-500),
+        5px -5px 10px var(--accent-500),
+        -5px 5px 10px var(--accent-500),
+        -5px -5px 10px var(--accent-500);
     max-width: 35vw;
     margin: 10px;
     padding: 10px;
@@ -67,30 +222,134 @@
     text-align: center;
 }
 
-.titleDance {
+.descript {
     text-align: center;
-    transform: translateX(50vw) translateX(-50%);
+    margin: 20px;
+    text-shadow:
+        0px 0px 5px var(--text-950),
+        0px 0px 5px var(--text-950);
+    font-size: 80%;
+}
+
+.titleAnimToggleBtn {
+    text-align: center;
     border-radius: 5px;
-    background-color: var(--secondary);
+    background-color: var(--secondary-300);
     border: 2px solid #fff;
     color: var(--text);
     transition:
         box-shadow 300ms ease-in-out,
         transform 100ms ease;
     box-shadow:
-        0px 0px 5px var(--primary),
-        0px 0px 10px var(--primary),
-        0px 0px 20px var(--primary);
+        0px 0px 5px var(--primary-700),
+        0px 0px 10px var(--primary-700),
+        0px 0px 20px var(--primary-700);
     font-size: 150%;
+    position: fixed;
+    top: 20px;
+    right: 20px;
 }
 
-.titleDance:active {
-    transform: translateX(50vw) translateX(-50%) translateY(3px);
+.titleAnimToggleBtn:active {
+    transform: translateY(3px);
 }
 
-.titleDance:hover {
+.titleAnimToggleBtn:hover {
     box-shadow:
-        0px 0px 5px var(--accent),
-        0px 0px 10px var(--accent),
-        0px 0px 20px var(--accent);
+        0px 0px 5px var(--accent-500),
+        0px 0px 10px var(--accent-500),
+        0px 0px 20px var(--accent-500);
+}
+
+.videoSlotsContainer {
+    width: 50vw;
+    height: 30vh;
+    transform: translateX(50vw) translateX(-50%);
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    background-color: var(--background-200);
+    border-radius: 30px;
+    position: relative;
+}
+
+.videoSlotsTitle {
+    animation: slotsTitleAnimate 500ms infinite ease alternate;
+    text-shadow:
+        5px 5px 10px var(--accent-500),
+        5px -5px 10px var(--accent-500),
+        -5px 5px 10px var(--accent-500),
+        -5px -5px 10px var(--accent-500);
+    font-size: 230%;
+    position: absolute;
+    top: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.videoSlotsBox {
+    position: relative;
+    z-index: 2;
+    overflow: hidden;
+    top: 50%;
+    left: 50%;
+    width: 40%;
+    height: 40%;
+    transform: translate(-50%, -50%);
+    border: 3px solid #fff;
+    box-shadow:
+        0px 0px 5px 3px var(--accent-500),
+        0px 0px 10px 3px var(--accent-500),
+        0px 0px 15px 3px var(--accent-500),
+        0px 0px 20px 3px var(--accent-500);
+}
+
+.videoSlotsText {
+    font-size: 300%;
+    z-index: 1;
+    text-shadow:
+        0px 0px 5px var(--accent-500),
+        0px 0px 10px var(--accent-500),
+        0px 0px 15px var(--accent-500),
+        0px 0px 20px var(--accent-500);
+    padding-top: 3%;
+    padding-bottom: 3%;
+    padding-left: 3%;
+    padding-right: 3%;
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.videoSlotsBtn {
+    width: 20%;
+    font-size: 200%;
+    border-radius: 5px;
+    background-color: var(--secondary-300);
+    border: 2px solid #fff;
+    transition:
+        box-shadow 250ms ease-in-out,
+        text-shadow 1s ease-in,
+        background-color 500ms ease-in-out;
+    box-shadow:
+        0px 0px 5px var(--primary-700),
+        0px 0px 10px var(--primary-700),
+        0px 0px 20px var(--primary-700);
+    position: absolute;
+    bottom: 15px;
+    transform: translateX(-50%);
+}
+
+.videoSlotsBtn:hover {
+    box-shadow:
+        0px 0px 5px #f00,
+        0px 0px 10px #f00,
+        0px 0px 20px #f00;
+    text-shadow:
+        0px 0px 5px #a00,
+        0px 0px 10px #a00,
+        0px 0px 20px #a00;
+    background-color: #500;
 }

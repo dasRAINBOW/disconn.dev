@@ -121,12 +121,32 @@ const titleAnims = [
   ],
 ];
 let animState = false;
+let activeSpin = false;
+let spinSteps = [750, 1000, 1500, 2000];
+let spinCounter = 0;
+let excitedInterval;
 let animInterval;
+let currentCode;
 
-document.getElementById("titleDance").addEventListener("click", animToggle);
+document
+  .getElementById("titleAnimToggleBtn")
+  .addEventListener("click", animToggle);
 window.addEventListener("load", () => {
   animTitle(defaulTitle, true);
 });
+document.getElementById("videoSlotsBtn").addEventListener("mouseenter", () => {
+  excitedAnimToggle(true);
+});
+document.getElementById("videoSlotsBtn").addEventListener("mouseleave", () => {
+  excitedAnimToggle(false);
+});
+document.getElementById("videoSlotsBtn").addEventListener("click", () => {
+  excitedAnimToggle(false);
+  toggleSpin();
+});
+document
+  .getElementById("videoSlotsText")
+  .addEventListener("animationend", decreaseSpin);
 
 function animTitle(currentAnim, single) {
   let i = 0;
@@ -145,7 +165,7 @@ function animTitle(currentAnim, single) {
   return animInterval;
 }
 
-async function animToggle() {
+function animToggle() {
   if (animState) {
     clearInterval(animInterval);
     animState = false;
@@ -156,5 +176,63 @@ async function animToggle() {
       titleAnims[Math.floor(Math.random() * titleAnims.length)],
       false,
     );
+  }
+}
+
+function excitedAnimToggle(run) {
+  if (run) {
+    excitedInterval = setInterval(() => {
+      document.getElementById("videoSlotsBtn").style.transform =
+        `translateX(-50%) translate(${Math.round(Math.random() * 4 - 2).toString() + "%"}, ${Math.round(Math.random() * 6 - 3).toString() + "%"})`;
+    }, 50);
+  } else {
+    try {
+      clearInterval(excitedInterval);
+    } catch {
+      console.log("excited anim already stopped.");
+    }
+    document.getElementById("videoSlotsBtn").style.transform =
+      `translateX(-50%)`;
+  }
+}
+
+function toggleSpin() {
+  if (!activeSpin) {
+    activeSpin = true;
+    document.getElementById("videoSlotsText").style.animation = ``;
+    void document.getElementById("videoSlotsText").offsetWidth;
+    document.getElementById("videoSlotsText").innerHTML =
+      `${codes[Math.floor(Math.random() * codes.length)]}`;
+    document.getElementById("videoSlotsText").style.animationName = `spinAnim`;
+    document.getElementById("videoSlotsText").style.animationDuration = `500ms`;
+    document.getElementById("videoSlotsText").style.animationTimingFunction =
+      `linear`;
+    setTimeout(() => {
+      document.getElementById("videoSlotsText").innerHTML =
+        `${codes[Math.floor(Math.random() * codes.length)]}`;
+    }, 250);
+  }
+}
+
+function decreaseSpin() {
+  document.getElementById("videoSlotsText").style.animation = ``;
+  void document.getElementById("videoSlotsText").offsetWidth;
+  if (spinCounter < spinSteps.length) {
+    document.getElementById("videoSlotsText").style.animationName = `spinAnim`;
+    document.getElementById("videoSlotsText").style.animationDuration =
+      `${spinSteps[spinCounter].toString()}ms`;
+    document.getElementById("videoSlotsText").style.animationTimingFunction =
+      `linear`;
+    setTimeout(() => {
+      currentCode = codes[Math.floor(Math.random() * codes.length)];
+      document.getElementById("videoSlotsText").innerHTML = currentCode;
+    }, spinSteps[spinCounter] / 2);
+    spinCounter++;
+  } else {
+    spinCounter = 0;
+    activeSpin = false;
+    setTimeout(() => {
+      window.location.replace("https://youtu.be/" + currentCode);
+    }, 1000);
   }
 }
