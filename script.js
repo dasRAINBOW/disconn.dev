@@ -25,6 +25,7 @@ const codes = [
   "XU_P65xT1q8",
   "cuIKTk_DO4A",
   "466L9ERSMgk",
+  "TJ-CmAwaIkU",
 ];
 const defaulTitle = [
   "dasRAINBOWs Website!",
@@ -120,6 +121,24 @@ const titleAnims = [
     ".＿＿(ツ)＿＿.",
   ],
 ];
+const audioIntro = [
+  "./media/audio/based.mp3",
+  "./media/audio/youreTellingMe.mp3",
+  "./media/audio/radioactive.mp3",
+  "./media/audio/apartmentComplex.mp3",
+  "./media/audio/theBirdFlu.mp3",
+  "./media/audio/whatsUpStairs.mp3",
+  "./media/audio/chefsKiss.mp3",
+];
+const audioOutro = [
+  "./media/audio/basedOnWhat.mp3",
+  "./media/audio/gingerBreadThisMan.mp3",
+  "./media/audio/radioIsOn.mp3",
+  "./media/audio/simpleForMe.mp3",
+  "./media/audio/theyTendTo.mp3",
+  "./media/audio/theyCantTalk.mp3",
+  "./media/audio/doTheyReally.mp3",
+];
 let animState = false;
 let activeSpin = false;
 let spinSteps = [750, 1000, 1500, 2000];
@@ -127,6 +146,11 @@ let spinCounter = 0;
 let excitedInterval;
 let animInterval;
 let currentCode;
+let currentAudio;
+let spinAudioNum;
+let spinIntro;
+let spinOutro;
+let allow = true;
 
 document
   .getElementById("titleAnimToggleBtn")
@@ -147,6 +171,13 @@ document.getElementById("videoSlotsBtn").addEventListener("click", () => {
 document
   .getElementById("videoSlotsText")
   .addEventListener("animationend", decreaseSpin);
+
+document.getElementById("based").addEventListener("mouseenter", () => {
+  playBased(true);
+});
+document.getElementById("based").addEventListener("mouseleave", () => {
+  playBased(false);
+});
 
 function animTitle(currentAnim, single) {
   let i = 0;
@@ -199,6 +230,9 @@ function excitedAnimToggle(run) {
 function toggleSpin() {
   if (!activeSpin) {
     activeSpin = true;
+    spinAudioNum = Math.floor(Math.random() * audioIntro.length);
+    spinIntro = new Audio(audioIntro[spinAudioNum]);
+    spinIntro.play();
     document.getElementById("videoSlotsText").style.animation = ``;
     void document.getElementById("videoSlotsText").offsetWidth;
     document.getElementById("videoSlotsText").innerHTML =
@@ -231,8 +265,27 @@ function decreaseSpin() {
   } else {
     spinCounter = 0;
     activeSpin = false;
-    setTimeout(() => {
+    spinOutro = new Audio(audioOutro[spinAudioNum]);
+    addSpinAudioEventListener();
+    spinOutro.play();
+  }
+}
+
+function playBased(run) {
+  if (run) {
+    currentAudio = new Audio("./media/audio/based.mp3");
+    currentAudio.play();
+  } else {
+    currentAudio.pause();
+    currentAudio.currentTime = 0;
+  }
+}
+
+function addSpinAudioEventListener() {
+  if (allow) {
+    spinOutro.addEventListener("ended", () => {
       window.location.replace("https://youtu.be/" + currentCode);
-    }, 1000);
+    });
+    allow = false;
   }
 }
