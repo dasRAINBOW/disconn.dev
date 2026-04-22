@@ -472,9 +472,11 @@ function scBtnLogic() {
     !STATE.sc.wouldScore &&
     STATE.sc.cyclePassed
   ) {
-    if (STATE.sc.score > 0 && STATE.sc.fouls < 3) {
+    if (STATE.sc.fouls < 3) {
       STATE.sc.cyclePassed = false;
-      STATE.sc.score--;
+      if (STATE.sc.score > 0) {
+		  STATE.sc.score--;
+	  }
       STATE.sc.fouls++;
       DOM.scBtn.innerHTML = `Score: ${STATE.sc.score} Lives: ${3 - STATE.sc.fouls}`;
       STATE.sc.randomPos = STATE.sc.genRandomPos(STATE.sc.randomPos);
