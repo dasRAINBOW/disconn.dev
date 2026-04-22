@@ -280,6 +280,7 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
+    position: sticky;
 }
 
 .videoSlotsTitle,
@@ -292,7 +293,13 @@ body {
         -5px -5px 10px var(--accent-500);
     font-size: 230%;
     margin-bottom: 20px;
+}
+
+.skillCheckHighScore {
+    font-size: 120%;
     top: 15px;
+    right: 15px;
+    position: absolute;
 }
 
 .videoSlotsBox {
@@ -327,7 +334,7 @@ body {
 .videoSlotsBtn,
 .skillCheckBtn {
     width: 20%;
-    height: 45px;
+    min-height: 45px;
     margin-top: 20px;
     font-size: 200%;
     border-radius: 5px;
@@ -381,6 +388,10 @@ body {
     .videoSlotsContainer,
     .skillCheckContainer {
         width: 90vw;
+    }
+    .skillCheckHighScore {
+        font-size: 80%;
+	position: static;
     }
     .videoSlotsBox {
         width: 80%;

@@ -147,7 +147,7 @@ const CONFIG = {
       10: { range: "|---|", timer: 150, size: 15 },
       15: { range: "|--|", timer: 200, size: 10 },
       20: { range: "|--|", timer: 150, size: 10 },
-      25: { range: "|-|", timer: 150, size: 10 },
+      25: { range: "|-|", timer: 150, size: 10 },Score: ${STATE.sc.score} Lives: ${3 - STATE.sc.fouls}
       30: { range: "|-|", timer: 100, size: 10 },
     },
     mobile: {
@@ -195,8 +195,9 @@ let STATE = {
     range: "|---|",
     timer: 150,
     score: 0,
+    fouls: 0,
     stickyScore: 0,
-    size: 25,
+    size: 20,
     direction: true,
     moveCounter: 0,
     wouldScore: false,
@@ -222,9 +223,13 @@ let STATE = {
   },
 };
 
+let cookies = decodeURIComponent(document.cookie).split("; ");
+const cookiesObj = new Object();
+
 const DOM = {
   titleBtn: document.getElementById("titleAnimToggleBtn"),
   scText: document.getElementById("skillCheckText"),
+  scHighScore: document.getElementById("skillCheckHighScore"),
   scBtn: document.getElementById("skillCheckBtn"),
   slotsText: document.getElementById("videoSlotsText"),
   slotsBtn: document.getElementById("videoSlotsBtn"),
@@ -288,6 +293,13 @@ window.addEventListener("load", () => {
       STATE.isMobile = false;
     }
   });
+  for (let i = 0; i < cookies.length; i++) {
+    let splitCookie = cookies[i].split("=");
+    cookiesObj[splitCookie[0]] = splitCookie[1];
+  }
+  if (cookiesObj.highScore !== "undefined") {
+    DOM.scHighScore.innerHTML = `Current highscore: ${cookiesObj.highScore}`;
+  }
 });
 
 function animTitle(currentAnim, single, titleAnimSpeed = 250) {
@@ -431,6 +443,7 @@ function scBtnLogic() {
     STATE.activeScGame = true;
     STATE.sc.score = 0;
     STATE.sc.stickyScore = 0;
+    STATE.sc.fouls = 0;
 
     if (STATE.anim) {
       animToggle(false);
@@ -441,7 +454,7 @@ function scBtnLogic() {
     }
 
     DOM.scText.style.fontFamily = `Fira Code, monospace`;
-    DOM.scBtn.innerHTML = STATE.sc.score;
+    DOM.scBtn.innerHTML = `Score: ${STATE.sc.score} Lives: ${3 - STATE.sc.fouls}`;
     STATE.sc.randomPos = STATE.sc.genRandomPos();
     STATE.intervals.gameLoop = setInterval(gameLoop, STATE.sc.timer);
   } else if (
@@ -451,7 +464,7 @@ function scBtnLogic() {
   ) {
     STATE.sc.cyclePassed = false;
     STATE.sc.score++;
-    DOM.scBtn.innerHTML = STATE.sc.score;
+    DOM.scBtn.innerHTML = `Score: ${STATE.sc.score} Lives: ${3 - STATE.sc.fouls}`;
     UpdateDifficulty();
     STATE.sc.randomPos = STATE.sc.genRandomPos(STATE.sc.randomPos);
   } else if (
@@ -459,13 +472,19 @@ function scBtnLogic() {
     !STATE.sc.wouldScore &&
     STATE.sc.cyclePassed
   ) {
-    if (STATE.sc.score > 0) {
+    if (STATE.sc.score > 0 && STATE.sc.fouls <= 3) {
       STATE.sc.cyclePassed = false;
       STATE.sc.score--;
-      DOM.scBtn.innerHTML = STATE.sc.score;
+      STATE.sc.fouls++;
+      DOM.scBtn.innerHTML = `Score: ${STATE.sc.score} Lives: ${3 - STATE.sc.fouls}`;
       STATE.sc.randomPos = STATE.sc.genRandomPos(STATE.sc.randomPos);
     } else {
       clearInterval(STATE.intervals.gameLoop);
+      if (STATE.sc.score > cookiesObj.highScore || cookiesObj.highScore === "undefined") {
+        cookiesObj.highScore = STATE.sc.score;
+	document.cookie(`highScore=${cookiesObj.highScore};`);
+	DOM.scHighScore.innerHTML = `Current highscore: ${cookiesObj.highScore}`;
+      }
       animTitle(CONFIG.defaulTitle, true);
       DOM.scText.style.fontFamily = "monospace";
       DOM.scText.innerHTML = "so close :(";
