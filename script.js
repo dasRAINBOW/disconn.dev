@@ -147,7 +147,7 @@ const CONFIG = {
       10: { range: "|---|", timer: 150, size: 15 },
       15: { range: "|--|", timer: 200, size: 10 },
       20: { range: "|--|", timer: 150, size: 10 },
-      25: { range: "|-|", timer: 150, size: 10 },Score: ${STATE.sc.score} Lives: ${3 - STATE.sc.fouls}
+      25: { range: "|-|", timer: 150, size: 10 },
       30: { range: "|-|", timer: 100, size: 10 },
     },
     mobile: {
