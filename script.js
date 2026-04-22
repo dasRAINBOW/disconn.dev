@@ -472,7 +472,7 @@ function scBtnLogic() {
     !STATE.sc.wouldScore &&
     STATE.sc.cyclePassed
   ) {
-    if (STATE.sc.score > 0 && STATE.sc.fouls <= 3) {
+    if (STATE.sc.score > 0 && STATE.sc.fouls < 3) {
       STATE.sc.cyclePassed = false;
       STATE.sc.score--;
       STATE.sc.fouls++;
@@ -482,8 +482,8 @@ function scBtnLogic() {
       clearInterval(STATE.intervals.gameLoop);
       if (STATE.sc.score > cookiesObj.highScore || cookiesObj.highScore === undefined) {
         cookiesObj.highScore = STATE.sc.score;
-	document.cookie(`highScore=${cookiesObj.highScore};`);
-	DOM.scHighScore.innerHTML = `Current highscore: ${cookiesObj.highScore}`;
+		document.cookie = `highScore=${cookiesObj.highScore};`;
+		DOM.scHighScore.innerHTML = `Current highscore: ${cookiesObj.highScore}`;
       }
       animTitle(CONFIG.defaulTitle, true);
       DOM.scText.style.fontFamily = "monospace";
