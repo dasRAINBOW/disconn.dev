@@ -205,7 +205,7 @@ let STATE = {
     randomPos: undefined,
     genRandomPos: function (lastPos) {
       let i = Math.round(Math.random() * STATE.sc.size);
-      if (lastPos === "undefined" && Math.round(Math.random()) == 0) {
+      if (lastPos === undefined && Math.round(Math.random()) == 0) {
         lastPos = i;
       }
       if (i == lastPos) {
@@ -297,7 +297,7 @@ window.addEventListener("load", () => {
     let splitCookie = cookies[i].split("=");
     cookiesObj[splitCookie[0]] = splitCookie[1];
   }
-  if (cookiesObj.highScore !== "undefined") {
+  if (cookiesObj.highScore !== undefined) {
     DOM.scHighScore.innerHTML = `Current highscore: ${cookiesObj.highScore}`;
   }
 });
@@ -393,7 +393,7 @@ function playBased(run, basedAudio) {
     basedAudio = new Audio("./media/audio/based.mp3");
     basedAudio.play();
     return basedAudio;
-  } else if (!run && basedAudio !== "undefined") {
+  } else if (!run && basedAudio !== undefined) {
     basedAudio.pause();
     basedAudio.currentTime = 0;
   }
@@ -480,7 +480,7 @@ function scBtnLogic() {
       STATE.sc.randomPos = STATE.sc.genRandomPos(STATE.sc.randomPos);
     } else {
       clearInterval(STATE.intervals.gameLoop);
-      if (STATE.sc.score > cookiesObj.highScore || cookiesObj.highScore === "undefined") {
+      if (STATE.sc.score > cookiesObj.highScore || cookiesObj.highScore === undefined) {
         cookiesObj.highScore = STATE.sc.score;
 	document.cookie(`highScore=${cookiesObj.highScore};`);
 	DOM.scHighScore.innerHTML = `Current highscore: ${cookiesObj.highScore}`;
