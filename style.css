@@ -242,7 +242,7 @@ body {
     border-radius: 5px;
     background-color: var(--secondary-300);
     border: 2px solid #fff;
-    color: var(--text);
+    color: var(--text-950);
     transition:
         box-shadow 300ms ease-in-out,
         transform 100ms ease;
@@ -343,7 +343,8 @@ body {
     transition:
         box-shadow 250ms ease-in-out,
         text-shadow 1s ease-in,
-        background-color 500ms ease-in-out;
+        background-color 500ms ease-in-out,
+        color 500ms ease-in-out;
     box-shadow:
         0px 0px 5px var(--primary-700),
         0px 0px 10px var(--primary-700),
@@ -361,6 +362,7 @@ body {
         0px 0px 10px #a00,
         0px 0px 20px #a00;
     background-color: #500;
+    color: #f3f1f4;
 }
 
 .skillCheckBtn[green="true"] {
@@ -373,6 +375,7 @@ body {
         0px 0px 10px #0a0,
         0px 0px 20px #0a0 !important;
     background-color: #050 !important;
+    color: #f3f1f4;
 }
 
 .skillCheckBtn:active {
@@ -391,7 +394,7 @@ body {
     }
     .skillCheckHighScore {
         font-size: 80%;
-	position: static;
+        position: static;
     }
     .videoSlotsBox {
         width: 80%;
