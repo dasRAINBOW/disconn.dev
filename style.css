@@ -193,6 +193,12 @@
 * {
     color: var(--text-950);
     font-family: monospace;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 body {
@@ -380,6 +386,13 @@ body {
 
 .skillCheckBtn:active {
     transform: translateY(3px);
+}
+
+.bottomText {
+    position: fixed;
+    bottom: 10px;
+    text-align: center;
+    width: 100vw;
 }
 
 @media (max-width: 768px) {
